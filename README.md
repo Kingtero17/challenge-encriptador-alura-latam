@@ -1,5 +1,6 @@
-<h1 align="center">Encripatdor de texto</h1>
-![Encriptador](https://user-images.githubusercontent.com/110305288/218232023-3c136b67-c20e-4bcc-8d2e-a201865c0b5d.PNG)
+<h1 align="center">Encriptador de texto</h1>
+
+![Encriptador](https://user-images.githubusercontent.com/110305288/218240088-72f41ae2-6e88-47fb-af0a-959421702660.PNG)
 
 
 <p align="center">
@@ -9,13 +10,9 @@ durante el curso de <br>"Principiante en programación"
 </p>
 
 
-##  👉[Mira el proyecto aquí](https://kingtero17.github.io/challenge-encriptador-alura-latam/)👈
+## 📝 Lenguajes utilizaados
 
-
-<h2 align="center">Lenguajes utilizaados</h2>
-<img align="centered" height="36" src="https://cdn-icons-png.flaticon.com/512/136/136530.png">
-<img align=
-<img height="36" src="https://cdn-icons-png.flaticon.com/512/136/136527.png">
+<img height="36" src="https://cdn-icons-png.flaticon.com/512/136/136530.png"><img height="36" src="https://cdn-icons-png.flaticon.com/512/136/136528.png"><img height="36" src="https://cdn-icons-png.flaticon.com/512/136/136527.png">
 
 
 ## ✔️ Requisitos del desafío 
@@ -40,8 +37,6 @@ y el usuario debe poder escoger entre as dos opciones._
 
 ## 🔑 Llaves de encriptación
 
-
-
 Las llaves de encriptación solicitadas son las siguientes:
 
 * **La letra "a" es convertida a "ai".**
@@ -49,13 +44,3 @@ Las llaves de encriptación solicitadas son las siguientes:
 * **La letra "i" es convertida a "imes".**
 * **La letra "o" es convertida a "ober".**
 * **La letra "u" es convertida a "ufat".**
-
-
-
-
-## ✔️ Validación 
-
-![image](https://user-images.githubusercontent.com/71351421/208806644-77417b9b-990f-439c-a6d6-cb6999f404a2.png)
-
-
-## Contact
