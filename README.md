@@ -44,3 +44,19 @@ Las llaves de encriptación solicitadas son las siguientes:
 * **La letra "i" es convertida a "imes".**
 * **La letra "o" es convertida a "ober".**
 * **La letra "u" es convertida a "ufat".**
+
+
+### Connect with me:
+
+<a href="www.linkedin.com/in/dylan-q-m" target="_blanck">
+  <img alt="Kingtero17 LinkedIn" width="40px" src="https://user-images.githubusercontent.com/110305288/215888900-65d1ecc3-8cc2-4bc2-86f4-fda233b79940.png">
+</a>
+
+<a href="https://discord.gg/s6wT5B5zMW" target="_blanck">
+  <img alt="Kingtero17 LinkedIn" width="40px" src="https://user-images.githubusercontent.com/110305288/215889288-e88a3aff-e9af-436b-83f7-15e0819a31e1.png">
+</a>
+
+<a href="dhgords17@gmail.com" target="_blanck">
+  <img alt="Kingtero17 LinkedIn" width="40px" src="https://user-images.githubusercontent.com/110305288/215888804-50a0d2ba-b60d-4ac0-9bf0-cdcc8c4d617c.png">
+</a>
+
