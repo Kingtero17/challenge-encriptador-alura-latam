@@ -16,7 +16,7 @@ function verificar(){
         Swal.fire({
             title: 'Error!',
             text: 'Solo letras minúsuclas y sin acentos',
-            imageUrl: './imageS/DrawKit Vector Illustration Fun & Playful Finn Character (14).svg',
+            imageUrl: '/images/DrawKit Vector Illustration Fun & Playful Finn Character (14).svg',
             imageWidth: 400,
             imageHeight: 200,
             imageAlt: 'Imagen de alerta',
