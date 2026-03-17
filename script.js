@@ -1,140 +1,123 @@
-const btn_encriptar = document.getElementById("btn-encriptar");
-const btn_desencriptar = document.getElementById("btn-desencriptar");
-const btn_copiar = document.getElementById("btn-copiar");
-const btn_borrar_1 = document.getElementById("btn-borrar-1");
-const btn_borrar_2 = document.getElementById("btn-borrar-2");
-const filtro = /[A-Z~!@#$%^&*()_+|}{[\]\\\/?=><:"`;.,áéíóúàèìòù'1-9]/g;
+const d = document;
+const textareaOrigen = d.getElementById("texto-encriptar");
+const textareaDestino = d.getElementById("texto-desencriptar");
+const cubierta = d.getElementById("cubierta");
+
+// Letras minúsculas y espacios solamente
+const REGEX_FILTRO = /[A-Z~!@#$%^&*()_+|}{[\]\\\/?=><:"`;.,áéíóúàèìòù'1-9]/g;
+
+// Diccionario de encriptación (fácil de mantener)
+const LLAVES = {
+    "e": "enter",
+    "i": "imes",
+    "a": "ai",
+    "o": "ober",
+    "u": "ufat"
+};
 
 
-//Funcion verificar.
-function verificar(){
-    let texto_nuevo = document.getElementById("texto-encriptar").value;
-    if(texto_nuevo.match(filtro) != null){
-        limpiar();
-        foco();
-        //Alerta de error.
-        Swal.fire({
-            title: 'Error!',
-            text: 'Solo letras minúsuclas y sin acentos',
-            imageUrl: './images/DrawKit Vector Illustration Fun & Playful Finn Character (14).svg',
-            imageWidth: 400,
-            imageHeight: 200,
-            imageAlt: 'Imagen de alerta',
-        });
-    }
-}
+const foco = () => textareaOrigen.focus();
 
-//funcion encriptar.
-function encriptar(){
-    let texto_nuevo = document.getElementById("texto-encriptar").value.trimStart();
-    texto_nuevo;
-    texto_nuevo = texto_nuevo
-        .replace(/e/g, "enter")
-        .replace(/i/g, "imes")
-        .replace(/a/g, "ai")
-        .replace(/o/g, "ober")
-        .replace(/u/g, "ufat");
-
-    texto_nuevo;
-
-    document.getElementById("texto-desencriptar").value = texto_nuevo;
-    document.getElementById("texto-desencriptar").style.color = "#000000";
-    ocultarImagen();
-}
-
-//Funcion desencriptar.
-function desencriptar(){
-    let texto_nuevo = document.getElementById("texto-encriptar").value;
-    texto_nuevo;
-    texto_nuevo = texto_nuevo
-        .replace(/enter/g, "e")
-        .replace(/imes/g, "i")
-        .replace(/ai/g, "a")
-        .replace(/ober/g, "o")
-        .replace(/ufat/g, "u");
-
-        texto_nuevo;
-
-    document.getElementById("texto-desencriptar").value = texto_nuevo;
-    document.getElementById("texto-desencriptar").style.color = "#000000";
-    ocultarImagen();
-}
-
-//Funcion copiar.
-function copiar(){
-    let texto_vacio = "";
-    let texto_des = document.getElementById("texto-desencriptar").value;
-    document.getElementById("texto-encriptar").placeholder = "";
-
-    let text_copi = document.getElementById("texto-desencriptar");
-    text_copi.select();
-    document.execCommand("copy");
-
-    if(texto_vacio !== texto_des){
-        limpiar();
-        foco();
-        //Alerta de completado.
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Texto copiado",
-            showConfirmButton: false,
-            timer: 1500,
-        });
-        ocultarImagen();
-    }else{
-        //Alerta de error.
-        Swal.fire({
-            position: "center",
-            icon: "warning",
-            title: "No se encotrado ningún texto a copiar",
-            showConfirmButton: false,
-            timer: 1500,
-        });
-    }
-}
-
-//Funcion ocultar imagen.
-function ocultarImagen(){
-    let texto_vacio = "";
-    let text_area = document.getElementById("texto-desencriptar").value;
-    text_area;
-    if (texto_vacio !== text_area){
-        document.getElementById("cubierta").style.display = "none";
-        $(".animacion").fadeIn(1000, function(){
-            $(".animacion").fadeOut(2000);
-        });
-    }else document.getElementById("cubierta").style.display = "";
-}
-
-//funcion limpiar.
-function limpiar(){
-    document.getElementById("texto-encriptar").value = "";
-    document.getElementById("texto-desencriptar").value = "";
-}
-
-//Funcion focus.
-function foco(){
-    document.getElementById("texto-encriptar").focus();
-}
-
-//Funcion focus
-function borrar(){
-    document.getElementById("texto-encriptar").placeholder = "Ingrese el texto aqui";
-    document.getElementById("texto-desencriptar").placeholder = "";
-    document.getElementById("texto-desencriptar").style.color = "#495057";
-    limpiar();
+const limpiar = () => {
+    textareaOrigen.value = "";
+    textareaDestino.value = "";
     foco();
-    ocultarImagen();
+};
+
+const actualizarInterfaz = () => {
+    const tieneContenido = textareaDestino.value.trim() !== "";
+    cubierta.style.opacity = tieneContenido ? "0" : "1";
+    cubierta.style.visibility = tieneContenido ? "hidden" : "visible";
+    
+    if (tieneContenido) {
+        $(".animacion").fadeIn(1000).fadeOut(2000);
+    }
+};
+
+function validarTexto() {
+    const texto = textareaOrigen.value;
+    if (texto.match(REGEX_FILTRO)) {
+        Swal.fire({
+            title: '<span style="font-family: Raleway; font-weight: 800;">¡Cuidado!</span>',
+            text: 'Solo letras minúsculas y sin acentos',
+            imageUrl: './images/DrawKit Vector Illustration Fun & Playful Finn Character (14).svg',
+            imageWidth: 150,
+            imageHeight: 150,
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: '#38424C',
+            borderRadius: '30px'
+        });
+        limpiar();
+        return false;
+    }
+    return true;
 }
 
+function procesarTexto(modo) {
+    if (!validarTexto()) return;
+
+    let texto = textareaOrigen.value.trimStart();
+    if (texto === "") return;
+
+    if (modo === 'encriptar') {
+        texto = texto.replace(/[eiaou]/g, i => LLAVES[i]);
+    } else {
+        // Invertimos el diccionario para desencriptar
+        const llavesInversas = Object.fromEntries(Object.entries(LLAVES).map(([k, v]) => [v, k]));
+        const pattern = new RegExp(Object.values(LLAVES).join('|'), 'g');
+        texto = texto.replace(pattern, i => llavesInversas[i]);
+    }
+
+    textareaDestino.value = texto;
+    textareaDestino.style.color = "#000000";
+    actualizarInterfaz();
+}
+
+async function copiar() {
+    const texto = textareaDestino.value;
+
+    if (texto.trim() === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: '¡Vaya!',
+            text: 'No hay nada que copiar',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(texto);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            background: '#bbffd0',
+            color: '#38424C'
+        });
+        Toast.fire({ icon: 'success', title: '¡Copiado!' });
+        
+        borrar(); // Limpia todo después de copiar satisfactoriamente
+    } catch (err) {
+        console.error("Error al copiar", err);
+    }
+}
+
+function borrar() {
+    textareaOrigen.placeholder = "Ingrese el texto aquí...";
+    textareaDestino.placeholder = "";
+    limpiar();
+    actualizarInterfaz();
+}
+
+d.getElementById("btn-encriptar").addEventListener("click", () => procesarTexto('encriptar'));
+d.getElementById("btn-desencriptar").addEventListener("click", () => procesarTexto('desencriptar'));
+d.getElementById("btn-copiar").addEventListener("click", copiar);
+d.getElementById("btn-borrar-1").addEventListener("click", borrar);
+d.getElementById("btn-borrar-2").addEventListener("click", borrar);
+
+// Inicio
 foco();
-btn_encriptar.addEventListener("click", verificar);
-btn_encriptar.addEventListener("click", encriptar);
-
-btn_desencriptar.addEventListener("click", verificar);
-btn_desencriptar.addEventListener("click", desencriptar);
-
-btn_copiar.addEventListener("click", copiar);
-btn_borrar_1.addEventListener("click", borrar);
-btn_borrar_2.addEventListener("click", borrar);
