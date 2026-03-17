@@ -69,6 +69,12 @@ textarea {
     overflow-y: auto;
 }
 
+textarea:focus {
+    background-color: #f8f9fa; /* Un cambio de color muy suave al escribir */
+    border: 1px solid rgba(69, 104, 220, 0.2); /* Un borde casi invisible del color de tu degradado */
+    transition: all 0.3s ease;
+}
+
 .container-cubierta {
     position: absolute;
     top: 25px; 
@@ -122,6 +128,16 @@ textarea {
 
 .btn:active { transform: translateY(4px); box-shadow: none; }
 
+footer {
+    padding: 10px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.footer-logo p { color: white; font-size: 0.8rem; margin-bottom: 5px; }
+.logo-social-media { width: 28px; margin: 0 10px; }
+
+
 /* --- AJUSTES PARA MÓVILES --- */
 @media (max-width: 768px) {
     body {
@@ -144,15 +160,6 @@ textarea {
         height: 280px;
     }
 }
-
-footer {
-    padding: 10px;
-    text-align: center;
-    flex-shrink: 0;
-}
-
-.footer-logo p { color: white; font-size: 0.8rem; margin-bottom: 5px; }
-.logo-social-media { width: 28px; margin: 0 10px; }
 
 /* --- ESTILO DE LA ADVERTENCIA (h6) --- */
 .advertencia {
